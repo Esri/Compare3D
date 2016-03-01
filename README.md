@@ -5,6 +5,9 @@ Compare3D is a configurable app template used to compare two web scenes.
 #Features
 A configurable application template to compare two web scenes.
 
+[View it live](http://www.arcgis.com/apps/Compare3d/index.html?webmap=e64331befcc74330963d2ff4118a5082)
+
+
 
 #Instructions
 

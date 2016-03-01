@@ -78,14 +78,32 @@ ContentPane) {
             // and application id
             // any url parameters and any application specific configuration information.
             if (config) {
-                this.config = config;
-              //  var scenes = this.config.webscenes || [this.config.webscene] || [], sceneLength = scenes.length || 0, sceneIds;
-                var scenes = [], sceneLength = 0, sceneIds;
-                if(this.config.webscene){
-                  scenes = [this.config.webscene];
-                }else if(this.config.webscenes && this.config.webscenes.length && this.config.webscenes.length > 0){
-                  scenes = this.config.webscenes;
+                if(config.webGLSupport && config.webGLSupport.canSupport === false){
+                  var error = new Error("Browser not supported <br>" + config.webGLSupport.helpMessage);
+                  this.reportError(error);
+                  return;
                 }
+                this.config = config;
+                var scenes = [], sceneLength = 0, sceneIds;
+                var isArray = lang.isArray(this.config.webscene);
+                if(isArray && this.config.webscene.length && this.config.webscene.length >= 2){
+                  scenes = this.config.webscene;
+                }else if(isArray && this.config.webscene.length && this.config.webscene.length === 1){
+                  scenes.push(this.config.webscene[0]);
+                  scenes.push(this.config.webscene[0]);
+                }else{
+                  // Do we have two web scenes separated by a comma?
+                  var mult = this.config.webscene.split(",");
+                  if(mult && mult.length && mult.length >=2){
+                    scenes.push(mult[0]);
+                    scenes.push(mult[1]);
+                  }else{
+                    scenes.push(this.config.webscene);
+                    scenes.push(this.config.webscene);
+                  }
+
+                }
+
                 sceneLength = scenes.length;
                 if(sceneLength >= 2){
                   sceneIds = scenes.splice(0,2);
@@ -147,14 +165,12 @@ ContentPane) {
           all(defs).then(lang.hitch(this, function(results){
             this._updateTheme();
             domClass.remove(document.body, "app-loading");
-            array.forEach(results, lang.hitch(this, function(result){
-              if(result.hasOwnProperty("viewingMode")){
-                this.views.push(result);
+            if(results && results.length && results.length > 0){
+              this.views = results;
+              if(this.config.link){
+                this._linkViews();
               }
-            }));
-            if(this.config.link){
-              this._linkViews();
-            }
+            } 
           }));
 
         },
@@ -240,7 +256,7 @@ ContentPane) {
                 title: this.config.i18n.tools.linkLabel
               },"map_0");
               domClass.add(linkBtn,["link-btn","compare-map-btn","icon-link-locked", "theme"]);
-              view.ui.add(linkBtn, "top-left");
+              //view.ui.add(linkBtn, "top-left");
               on(linkBtn, "click", lang.hitch(this, this._linkViews));
             }
 
