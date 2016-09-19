@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "Neįmanoma sukurti scenos"
-    },
-    tools: {
-      linkLabel: "Susieti peržiūras",
-      unlinkLabel: "Atsieti peržiūras"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "Neįmanoma sukurti scenos",
+    "support": "Naršyklė nepalaikoma",
+    "noScene": "Nurodykite scenos (-ų) ID",
+    "noConfig": "Neapibrėžta konfigūracija",
+    "invalidScene": "Neįmanoma sukurti scenos"
+  },
+  "tools": {
+    "linkLabel": "Susieti peržiūras",
+    "unlinkLabel": "Atsieti peržiūras"
+  }
+});

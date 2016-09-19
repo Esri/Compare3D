@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "Impossible de créer la scène"
-    },
-    tools: {
-      linkLabel: "Lier des vues",
-      unlinkLabel: "Dissocier les vues"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "Impossible de créer la scène",
+    "support": "Navigateur non pris en charge",
+    "noScene": "Spécifier l'ID de la scène",
+    "noConfig": "La configuration n'est pas définie",
+    "invalidScene": "Impossible de créer la scène"
+  },
+  "tools": {
+    "linkLabel": "Lier des vues",
+    "unlinkLabel": "Dissocier les vues"
+  }
+});

@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "Nie można utworzyć sceny"
-    },
-    tools: {
-      linkLabel: "Połącz widoki",
-      unlinkLabel: "Odłącz widoki"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "Nie można utworzyć sceny",
+    "support": "Nieobsługiwana przeglądarka",
+    "noScene": "Podaj identyfikatory scen",
+    "noConfig": "Konifugracja niezdefiniowana",
+    "invalidScene": "Nie można utworzyć sceny"
+  },
+  "tools": {
+    "linkLabel": "Połącz widoki",
+    "unlinkLabel": "Odłącz widoki"
+  }
+});

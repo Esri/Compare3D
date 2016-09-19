@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "Det går inte att skapa scenen"
-    },
-    tools: {
-      linkLabel: "Länka vyer",
-      unlinkLabel: "Bryt länk mellan vyer"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "Det går inte att skapa scenen",
+    "support": "Webbläsaren stöds inte",
+    "noScene": "Ange scen-ID",
+    "noConfig": "Konfigurationen har inte definierats",
+    "invalidScene": "Det går inte att skapa scenen"
+  },
+  "tools": {
+    "linkLabel": "Länka vyer",
+    "unlinkLabel": "Bryt länk mellan vyer"
+  }
+});

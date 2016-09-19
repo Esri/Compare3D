@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "無法建立場景"
-    },
-    tools: {
-      linkLabel: "連結視圖",
-      unlinkLabel: "取消連結視圖"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "無法建立場景",
+    "support": "瀏覽器不受支援",
+    "noScene": "指定場景 ID",
+    "noConfig": "配置未定義",
+    "invalidScene": "無法建立場景"
+  },
+  "tools": {
+    "linkLabel": "連結視圖",
+    "unlinkLabel": "取消連結視圖"
+  }
+});

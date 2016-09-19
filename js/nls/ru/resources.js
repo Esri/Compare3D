@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "Невозможно создать сцену"
-    },
-    tools: {
-      linkLabel: "Связать виды",
-      unlinkLabel: "Отменить связь видов"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "Невозможно создать сцену",
+    "support": "Браузер не поддерживается",
+    "noScene": "Выбрать идентификаторы сцены",
+    "noConfig": "Конфигурация не определена",
+    "invalidScene": "Невозможно создать сцену"
+  },
+  "tools": {
+    "linkLabel": "Связать виды",
+    "unlinkLabel": "Отменить связь видов"
+  }
+});

@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "Kan ikke opprette scenen"
-    },
-    tools: {
-      linkLabel: "Koble sammen visninger",
-      unlinkLabel: "Opphev kobling for visninger"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "Kan ikke opprette scenen",
+    "support": "Nettleseren støttes ikke",
+    "noScene": "Angi scene-ID",
+    "noConfig": "Konfigurasjon er ikke definert",
+    "invalidScene": "Kan ikke opprette scenen"
+  },
+  "tools": {
+    "linkLabel": "Koble sammen visninger",
+    "unlinkLabel": "Opphev kobling for visninger"
+  }
+});

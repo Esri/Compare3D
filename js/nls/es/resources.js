@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "No se puede crear la escena"
-    },
-    tools: {
-      linkLabel: "Vincular vistas",
-      unlinkLabel: "Desvincular vistas"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "No se puede crear la escena",
+    "support": "Navegador no compatible",
+    "noScene": "Especificar Id. de escenas",
+    "noConfig": "La configuración no se ha definido",
+    "invalidScene": "No se puede crear la escena"
+  },
+  "tools": {
+    "linkLabel": "Vincular vistas",
+    "unlinkLabel": "Desvincular vistas"
+  }
+});

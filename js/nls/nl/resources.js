@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "Scene kan niet gemaakt worden"
-    },
-    tools: {
-      linkLabel: "Weergave koppelen",
-      unlinkLabel: "Weergave ontkoppelen"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "Scene kan niet gemaakt worden",
+    "support": "Browser niet ondersteund",
+    "noScene": "Scene-id(s) specificeren",
+    "noConfig": "Configuratie is niet gedefinieerd",
+    "invalidScene": "Scene kan niet gemaakt worden"
+  },
+  "tools": {
+    "linkLabel": "Weergave koppelen",
+    "unlinkLabel": "Weergave ontkoppelen"
+  }
+});

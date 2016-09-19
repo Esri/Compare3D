@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "ไม่สามารถสร้างเว็บซีน"
-    },
-    tools: {
-      linkLabel: "วิวเชื่อมกัน",
-      unlinkLabel: "วิวไม่เชื่อมกัน"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "ไม่สามารถสร้างเว็บซีน",
+    "support": "ไม่รองรับเบราว์เซอร์",
+    "noScene": "ระบุเลขของซีน",
+    "noConfig": "ไม่ได้กำหนดการปรับแต่งไว้",
+    "invalidScene": "ไม่สามารถสร้างเว็บซีน"
+  },
+  "tools": {
+    "linkLabel": "วิวเชื่อมกัน",
+    "unlinkLabel": "วิวไม่เชื่อมกัน"
+  }
+});

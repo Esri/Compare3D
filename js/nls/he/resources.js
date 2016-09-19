@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "לא ניתן ליצור סצינה"
-    },
-    tools: {
-      linkLabel: "תצוגות מקושרות",
-      unlinkLabel: "תצוגות לא מקושרות"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "לא ניתן ליצור סצנה",
+    "support": "אין תמיכה בדפדפן",
+    "noScene": "ציין מזהה סצנה",
+    "noConfig": "Config לא מוגדר",
+    "invalidScene": "לא ניתן ליצור סצינה"
+  },
+  "tools": {
+    "linkLabel": "תצוגות מקושרות",
+    "unlinkLabel": "תצוגות לא מקושרות"
+  }
+});

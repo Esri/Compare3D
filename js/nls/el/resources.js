@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "Δεν είναι δυνατή η δημιουργία 3D προβολής"
-    },
-    tools: {
-      linkLabel: "Σύνδεση προβολών",
-      unlinkLabel: "Αποσύνδεση προβολών"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "Δεν είναι δυνατή η δημιουργία 3D προβολής",
+    "support": "Το πρόγραμμα περιήγησης δεν υποστηρίζεται",
+    "noScene": "Καθορισμός αναγνωριστικών 3D προβολής",
+    "noConfig": "Δεν έχει οριστεί παραμετροποίηση",
+    "invalidScene": "Δεν είναι δυνατή η δημιουργία 3D προβολής"
+  },
+  "tools": {
+    "linkLabel": "Σύνδεση προβολών",
+    "unlinkLabel": "Αποσύνδεση προβολών"
+  }
+});

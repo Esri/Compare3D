@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "Görünüm oluşturulamıyor"
-    },
-    tools: {
-      linkLabel: "Bağlama Görünümleri",
-      unlinkLabel: "Görünüm Bağlantılarını Kaldır"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "Görünüm oluşturulamıyor",
+    "support": "Tarayıcı desteklenmiyor",
+    "noScene": "Görünüm kimlikleri belirtin",
+    "noConfig": "Yapılandırma tanımlı değil",
+    "invalidScene": "Görünüm oluşturulamıyor"
+  },
+  "tools": {
+    "linkLabel": "Bağlama Görünümleri",
+    "unlinkLabel": "Görünüm Bağlantılarını Kaldır"
+  }
+});

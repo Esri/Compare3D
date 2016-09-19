@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "Maisemaa ei voi luoda"
-    },
-    tools: {
-      linkLabel: "Linkitä näkymät",
-      unlinkLabel: "Poista näkymien linkitys"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "Maisemaa ei voi luoda",
+    "support": "Selainta ei tueta",
+    "noScene": "Määritä maiseman tunnukset",
+    "noConfig": "Kokoonpanoa ei ole määritetty",
+    "invalidScene": "Maisemaa ei voi luoda"
+  },
+  "tools": {
+    "linkLabel": "Linkitä näkymät",
+    "unlinkLabel": "Poista näkymien linkitys"
+  }
+});

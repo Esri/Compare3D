@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "Không thể tạo scene"
-    },
-    tools: {
-      linkLabel: "Liên kết các Chế độ Xem",
-      unlinkLabel: "Bỏ liên kết các Chế độ Xem"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "Không thể tạo scene",
+    "support": "Trình duyệt không được hỗ trợ",
+    "noScene": "Chỉ định (các) id scene",
+    "noConfig": "Cấu hình không được xác định",
+    "invalidScene": "Không thể tạo scene"
+  },
+  "tools": {
+    "linkLabel": "Liên kết các Chế độ Xem",
+    "unlinkLabel": "Bỏ liên kết các Chế độ Xem"
+  }
+});

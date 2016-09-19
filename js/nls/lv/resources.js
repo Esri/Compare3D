@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "Nevarēja izveidot scēnu"
-    },
-    tools: {
-      linkLabel: "Saistīt skatus",
-      unlinkLabel: "Atsaistīt skatus"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "Nevarēja izveidot scēnu",
+    "support": "Pārlūks nav atbalstīts",
+    "noScene": "Norādīt scēnas identifikatoru(-s)",
+    "noConfig": "Konfigurācija nav definēta",
+    "invalidScene": "Nevarēja izveidot scēnu"
+  },
+  "tools": {
+    "linkLabel": "Saistīt skatus",
+    "unlinkLabel": "Atsaistīt skatus"
+  }
+});

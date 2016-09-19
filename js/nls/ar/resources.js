@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "يتعذر إنشاء المشهد"
-    },
-    tools: {
-      linkLabel: "ربط العروض",
-      unlinkLabel: "إلغاء ربط العروض"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "يتعذر إنشاء المشهد",
+    "support": "المتصفح غير مدعوم",
+    "noScene": "تحديد مُعرفات المشهد",
+    "noConfig": "لم يتم تعريف التكوين",
+    "invalidScene": "يتعذر إنشاء المشهد"
+  },
+  "tools": {
+    "linkLabel": "ربط العروض",
+    "unlinkLabel": "إلغاء ربط العروض"
+  }
+});

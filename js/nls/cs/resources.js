@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "Nelze vytvořit scénu"
-    },
-    tools: {
-      linkLabel: "Propojit zobrazení",
-      unlinkLabel: "Odpojit zobrazení"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "Nelze vytvořit scénu",
+    "support": "Prohlížeč není podporován",
+    "noScene": "Zadejte id scény/scén",
+    "noConfig": "Konfigurace není definována",
+    "invalidScene": "Nelze vytvořit scénu"
+  },
+  "tools": {
+    "linkLabel": "Propojit zobrazení",
+    "unlinkLabel": "Odpojit zobrazení"
+  }
+});

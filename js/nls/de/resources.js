@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "Szene kann nicht erstellt werden"
-    },
-    tools: {
-      linkLabel: "Ansichten verknüpfen",
-      unlinkLabel: "Verknüpfung von Ansichten aufheben"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "Szene kann nicht erstellt werden",
+    "support": "Browser wird nicht unterstützt",
+    "noScene": "Szenen-ID(s) festlegen",
+    "noConfig": "Konfiguration ist nicht definiert",
+    "invalidScene": "Szene kann nicht erstellt werden"
+  },
+  "tools": {
+    "linkLabel": "Ansichten verknüpfen",
+    "unlinkLabel": "Verknüpfung von Ansichten aufheben"
+  }
+});

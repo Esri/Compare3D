@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "씬을 생성할 수 없음"
-    },
-    tools: {
-      linkLabel: "뷰 링크",
-      unlinkLabel: "뷰 링크 해제"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "씬을 생성할 수 없음",
+    "support": "브라우저가 지원되지 않음",
+    "noScene": "씬 ID 지정",
+    "noConfig": "구성이 정의되지 않음",
+    "invalidScene": "씬을 생성할 수 없음"
+  },
+  "tools": {
+    "linkLabel": "뷰 링크",
+    "unlinkLabel": "뷰 링크 해제"
+  }
+});

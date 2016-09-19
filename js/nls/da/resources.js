@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "Kan ikke oprette scene"
-    },
-    tools: {
-      linkLabel: "Sammenkæd visninger",
-      unlinkLabel: "Fjern sammenkædning af visninger"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "Kan ikke oprette scene",
+    "support": "Browser understøttes ikke",
+    "noScene": "Angive scene-id(er)",
+    "noConfig": "Konfiguration er ikke defineret",
+    "invalidScene": "Kan ikke oprette scene"
+  },
+  "tools": {
+    "linkLabel": "Sammenkæd visninger",
+    "unlinkLabel": "Fjern sammenkædning af visninger"
+  }
+});

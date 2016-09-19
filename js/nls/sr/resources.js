@@ -16,14 +16,14 @@
  */
 define({
   "scene": {
-    "error": "Vaadet ei saanud luua",
-    "support": "Brauserit ei toetata",
-    "noScene": "Määra vaate ID-d",
-    "noConfig": "Konfiguratsioon on määramata",
-    "invalidScene": "Vaadet ei saanud luua"
+    "error": "Kreiranje scene nije moguće",
+    "support": "Pregledač nije podržan",
+    "noScene": "Definišite ID scene",
+    "noConfig": "Konfiguracija nije definisana",
+    "invalidScene": "Kreiranje scene nije moguće"
   },
   "tools": {
-    "linkLabel": "Lingi vaated",
-    "unlinkLabel": "Tühista vaadete linkimine"
+    "linkLabel": "Poveži prikaze",
+    "unlinkLabel": "Prekini link sa prikazima"
   }
 });

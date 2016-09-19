@@ -1,4 +1,4 @@
-﻿/*global define */
+/*global define */
 /*
  | Copyright 2014 Esri
  |
@@ -14,14 +14,16 @@
  | See the License for the specific language governing permissions and
  | limitations under the License.
  */
-define(
-   ({
-    scene: {
-      error: "シーンを作成できません"
-    },
-    tools: {
-      linkLabel: "ビューのリンク",
-      unlinkLabel: "ビューのリンクを解除"
-    }
-  })
-);
+define({
+  "scene": {
+    "error": "シーンを作成できません",
+    "support": "サポートされていないブラウザーです",
+    "noScene": "シーン ID の指定",
+    "noConfig": "構成が定義されていません",
+    "invalidScene": "シーンを作成できません"
+  },
+  "tools": {
+    "linkLabel": "ビューのリンク",
+    "unlinkLabel": "ビューのリンクを解除"
+  }
+});
