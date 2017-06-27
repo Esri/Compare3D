@@ -55,8 +55,7 @@
 }
 
 .esri-slide-list img:hover {
-  -webkit-filter: grayscale(0%);
-  !important;
+  -webkit-filter: grayscale(0%)!important;
   filter: none !important;
 }
 

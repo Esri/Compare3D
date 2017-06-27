@@ -1,18 +1,18 @@
 define([
-  'dojo/_base/declare',
-  'dojo/_base/lang',
+  "dojo/_base/declare",
+  "dojo/_base/lang",
 
-  'dojo/dom-style',
+  "dojo/dom-style",
 
-  'dijit/_WidgetBase',
-  'dijit/_TemplatedMixin',
+  "dijit/_WidgetBase",
+  "dijit/_TemplatedMixin",
 
-  'dojo/i18n!../nls/resources',
-  'dojo/text!./templates/SlideList.html',
+  "dojo/i18n!../nls/resources",
+  "dojo/text!./templates/SlideList.html",
 
-  './SlideItem'
+  "./SlideItem"
 
-], function(
+], function (
   declare, lang,
   domStyle,
   _WidgetBase, _TemplatedMixin,
@@ -20,7 +20,7 @@ define([
   SlideItem
 ) {
 
-  var slideList = declare('SlideList', [_WidgetBase, _TemplatedMixin], {
+  var slideList = declare("SlideList", [_WidgetBase, _TemplatedMixin], {
 
     declaredClass: "esri.widgets.SlideList",
 
@@ -29,7 +29,7 @@ define([
     options: {
       scene: null,
       view: null,
-      color: '#ff0000'
+      color: "#ff0000"
     },
 
     //--------------------------------------------------------------------------
@@ -38,7 +38,7 @@ define([
     //
     //--------------------------------------------------------------------------
 
-    constructor: function(options, srcRefNode) {
+    constructor: function (options, srcRefNode) {
       // mix in settings and defaults
       lang.mixin(this.options, options);
       // widget node
@@ -48,21 +48,21 @@ define([
       this.color = this.options.color;
     },
 
-    postCreate: function() {
+    postCreate: function () {
       this.inherited(arguments);
     },
 
-    startup: function() {
+    startup: function () {
       this.inherited(arguments);
       this._updateList();
     },
 
-    destroy: function() {
+    destroy: function () {
       this.scene = null;
       this.inherited(arguments);
     },
 
-    _updateList: function() {
+    _updateList: function () {
       var slides = this.scene.presentation.slides;
       var node = this.contentNode;
       if (slides.length === 0) {
@@ -73,12 +73,12 @@ define([
         return;
       }
       domStyle.set(node, "width", slides.length * 130 + "px");
-      slides.forEach(lang.hitch(this, function(slide, index) {
+      slides.forEach(lang.hitch(this, function (slide, index) {
         this._addSlideItem(slide, index);
       }));
     },
 
-    _addSlideItem: function(slide, index) {
+    _addSlideItem: function (slide, index) {
       var options = {
         scene: this.scene,
         slide: slide,
@@ -86,11 +86,11 @@ define([
         color: this.color
       };
       var slideItem = new SlideItem(options);
-      slideItem.on('click', lang.hitch(this, this._applySlide, slide));
+      slideItem.on("click", lang.hitch(this, this._applySlide, slide));
       slideItem.placeAt(this.contentNode);
     },
 
-    _applySlide: function(slide) {
+    _applySlide: function (slide) {
       slide.applyTo(this.view);
     }
 

@@ -16,14 +16,14 @@
  */
 define({
   "scene": {
-    "error": "לא ניתן ליצור סצינה",
-    "support": "אין תמיכה בדפדפן",
-    "noScene": "ציין מזהי סצינה",
-    "noConfig": "Config לא מוגדר",
-    "invalidScene": "לא ניתן ליצור סצינה"
+    "error": "Tidak dapat membuat adegan",
+    "support": "Browser tidak didukung",
+    "noScene": "Tentukan id scene",
+    "noConfig": "Konfigurasi tidak ditetapkan",
+    "invalidScene": "Tidak dapat membuat scene"
   },
   "tools": {
-    "linkLabel": "תצוגות מקושרות",
-    "unlinkLabel": "תצוגות לא מקושרות"
+    "linkLabel": "Tautkan Tampilan",
+    "unlinkLabel": "Lepas Tautan Tampilan"
   }
 });

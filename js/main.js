@@ -46,11 +46,10 @@ define([
 
   "esri/core/Scheduler",
 
-  "application/SlideList/SlideList",
-
   "dijit/layout/ContentPane",
 
-  "dojo/domReady!"], function(
+  "dojo/domReady!"
+], function (
   declare,
   lang,
   kernel,
@@ -72,13 +71,13 @@ define([
   SceneView,
   WebScene,
   Scheduler,
-  SlideList,
   ContentPane) {
+
   return declare(null, {
     config: {},
     linkHandler: null,
     views: [],
-    startup: function(config) {
+    startup: function (config) {
       document.documentElement.lang = kernel.locale;
       // config will contain application and user defined info for the template such as i18n strings, the web map id
       // and application id
@@ -91,7 +90,7 @@ define([
 
         // temp fix for scene layer
         var regex = /\/SceneServer\/layers\/\d+\/?$/;
-        esriRequest.setRequestPreCallback(function(request) {
+        esriRequest.setRequestPreCallback(function (request) {
           if (request && typeof request === "object" && !request.content && regex.test(request.url)) {
             request.content = {
               f: "json"
@@ -137,7 +136,7 @@ define([
         this.reportError(error);
       }
     },
-    reportError: function(error) {
+    reportError: function (error) {
       // remove loading class from body
       domClass.remove(document.body, "app-loading");
       domClass.add(document.body, "app-error");
@@ -148,17 +147,13 @@ define([
       // set message
       var node = dom.byId("loading_message");
       if (node) {
-        if (this.config && this.config.i18n) {
-          node.innerHTML = this.config.i18n.scene.error + ": " + error.message;
-        } else {
-          node.innerHTML = this.config.i18n.scene.invalidScene + ": " + error.message;
-        }
+        node.innerHTML = error.message;
       }
       return error;
     },
-    _createUI: function(ids) {
+    _createUI: function (ids) {
       var defs = [];
-      array.forEach(ids, lang.hitch(this, function(id, index) {
+      array.forEach(ids, lang.hitch(this, function (id, index) {
         var mapHTML = string.substitute(mapTemplate, {
           id: index
         });
@@ -174,18 +169,22 @@ define([
           this._togglePanel(index);
         }
         // Toggle info view when button is clicked
-        on(dom.byId("toggle_" + index), "click", lang.hitch(this, function() {
+        on(dom.byId("toggle_" + index), "click", lang.hitch(this, function () {
           this._togglePanel(index);
         }));
 
         defs.push(this._createWebScene(id, index));
       }));
 
-      all(defs).then(lang.hitch(this, function(results) {
+      all(defs).then(lang.hitch(this, function (results) {
         this._updateTheme();
         domClass.remove(document.body, "app-loading");
         if (results && results.length && results.length > 0) {
           this.views = results;
+          // Add legend if enabled 
+          if (this.config.legend) {
+            this._addLegend();
+          }
           if (this.config.link) {
             this._linkViews();
           }
@@ -193,14 +192,34 @@ define([
       }));
 
     },
-    _linkViews: function() {
+    _addLegend: function () {
+      this.views.forEach(function (view) {
+        require(["esri/widgets/Legend", "esri/widgets/Expand"], function (Legend, Expand) {
+          if (!Legend || !Expand) {
+            return;
+          }
+          // add legend widget to ui
+          var legend = new Legend({
+            view: view
+          });
+          var legendExpand = new Expand({
+            view: view,
+            content: legend,
+            expandIconClass: "esri-icon-layer-list"
+          });
+
+          view.ui.add(legendExpand, "top-right");
+        }.bind(this));
+      });
+    },
+    _linkViews: function () {
       // Sync/Unsync the view extents
       if (!this.linkHandler) {
         // Link Views
         this.linkHandler = this._bindViews(this.views);
         // Switch to the unlink icon
-        domClass.remove("linkViewBtn", "icon-link-locked");
-        domClass.add("linkViewBtn", "icon-link-unlocked");
+        domClass.remove("linkViewBtn", "esri-icon-link-horizontal");
+        domClass.add("linkViewBtn", "esri-icon-unlocked-link-horizontal");
         dom.byId("linkViewBtn").title = this.config.i18n.tools.unlinkLabel;
         // Remove any components from the second view
         this._updateViewComponents(false);
@@ -209,19 +228,19 @@ define([
         this.linkHandler.remove();
         this.linkHandler = null;
         // Switch to the link icon
-        domClass.add("linkViewBtn", "icon-link-locked");
-        domClass.remove("linkViewBtn", "icon-link-unlocked");
+        domClass.add("linkViewBtn", "esri-icon-link-horizontal");
+        domClass.remove("linkViewBtn", "esri-icon-unlocked-link-horizontal");
         dom.byId("linkViewBtn").title = this.config.i18n.tools.linkLabel;
         // Add components from the second view if needed
         this._updateViewComponents(true);
       }
 
     },
-    _updateViewComponents: function(update) {
+    _updateViewComponents: function (update) {
       if (this.views && this.views.length && this.views.length === 2) {
         var view = this.views[1];
         // Make sure the color theme is applied to both views. Once we've applied destroy the handler
-        var updateHandle = view.watch("ui.components", lang.hitch(this, function(newValue, oldValue, property, object) {
+        var updateHandle = view.watch("ui.components", lang.hitch(this, function (newValue, oldValue, property, object) {
           if (newValue && newValue.length && newValue.length > 1) {
             this._updateTheme();
             updateHandle.remove();
@@ -234,14 +253,14 @@ define([
         }
       }
     },
-    _createWebScene: function(id, index) {
+    _createWebScene: function (id, index) {
       var def = new Deferred();
       var scene = new WebScene({
         portalItem: {
           id: id
         }
       });
-      scene.load().then(lang.hitch(this, function(result) {
+      scene.load().then(lang.hitch(this, function (result) {
         var params = {
           map: scene,
           container: "map_" + index
@@ -257,67 +276,77 @@ define([
           };
         }
         var view = new SceneView(params);
+        view.popup.closeOnViewChangeEnabled = true;
         // Add content to the info panel (slides, title, desc)
         dom.byId("title_" + index).innerHTML = result.portalItem.title;
         dom.byId("desc_" + index).innerHTML = result.portalItem.snippet;
         // add slide carousel to the panel
         var slides = scene.presentation.slides;
         if (slides && slides.length && slides.length > 0) {
-          var options = {
-            scene: scene,
-            view: view,
-            color: this.config.slideColorTheme
-          };
-          var slideList = new SlideList(options, "carousel_" + index);
-          slideList.startup();
+          require(["application/SlideList/SlideList"], function (SlideList) {
+            var options = {
+              scene: scene,
+              view: view,
+              color: this.config.slideColorTheme
+            };
+            var slideList = new SlideList(options, "carousel_" + index);
+            slideList.startup();
+          }.bind(this));
+
+        } else {
+          // Let's shrink panel size since we have no slides 
+          var style = document.createElement("style");
+          style.appendChild(document.createTextNode(".map-details{height:70px;} .toggle-btn.opened{bottom:70px;}"));
+          document.head.appendChild(style);
         }
 
+        if (index === 0) {
+          // add extent link option to the first map
+          var linkBtn = domConstruct.create("button", {
+            type: "button",
+            id: "linkViewBtn",
+            title: this.config.i18n.tools.linkLabel
+          }, "map_0");
+          domClass.add(linkBtn, ["esri-widget-button", "compare-map-btn", "esri-icon-link-horizontal"]);
+          view.ui.add(linkBtn, "top-left");
+          on(linkBtn, "click", lang.hitch(this, this._linkViews));
+        }
         def.resolve(view);
 
-      }), lang.hitch(this, function(error) {
+      }), function (error) {
         def.resolve(error);
-      }));
-
-
-
-      if (index === 0) {
-        // add extent link option to the first map
-        var linkBtn = domConstruct.create("button", {
-          type: "button",
-          id: "linkViewBtn",
-          title: this.config.i18n.tools.linkLabel
-        }, "map_0");
-        domClass.add(linkBtn, ["link-btn", "compare-map-btn", "icon-link-locked", "theme"]);
-        //view.ui.add(linkBtn, "top-left");
-        on(linkBtn, "click", lang.hitch(this, this._linkViews));
-      }
+      }.bind(this));
 
       return def.promise;
     },
-    _togglePanel: function(index) {
+
+
+    _togglePanel: function (index) {
       // toggle the info panel when the toggle button is clicked
       domClass.toggle("details_" + index, "opened");
       domClass.toggle("toggle_" + index, "opened");
     },
-    _updateTheme: function() {
+
+
+    _updateTheme: function () {
       // Update the color theme of the widgets and slide gallery to match
       // the values specifed during app configuration
-      query(".theme").forEach(lang.hitch(this, function(node) {
+      query(".theme").forEach(lang.hitch(this, function (node) {
         domStyle.set(node, {
           backgroundColor: this.config.backgroundColor,
           color: this.config.textColor
         });
       }));
-      query(".esri-compass .esri-compass-container").forEach(lang.hitch(this, function(node) {
+      query(".esri-compass .esri-compass-container").forEach(lang.hitch(this, function (node) {
         domStyle.set(node, {
           backgroundColor: this.config.backgroundColor,
           color: this.config.textColor
         });
       }));
-      query(".esri-compass-icon").forEach(lang.hitch(this, function(node) {
+      query(".esri-compass-icon").forEach(lang.hitch(this, function (node) {
         domStyle.set(node, "fill", this.config.textColor);
       }));
-      query(".esri-zoom .esri-button").forEach(lang.hitch(this, function(node) {
+      query(".esri-zoom .esri-button").forEach(lang.hitch(this, function (node) {
         domStyle.set(node, {
           backgroundColor: this.config.backgroundColor,
           color: this.config.textColor
@@ -325,7 +354,9 @@ define([
       }));
 
     },
-    _bindView: function(view, others) {
+
+
+    _bindView: function (view, others) {
       others = Array.isArray(others) ? others : [others];
 
       var hdl;
@@ -333,9 +364,9 @@ define([
       var otherInteractHandlers;
       var timer;
 
-      var clear = function() {
+      var clear = function () {
         if (otherInteractHandlers) {
-          otherInteractHandlers.forEach(function(h) {
+          otherInteractHandlers.forEach(function (h) {
             h.remove();
           });
         }
@@ -351,7 +382,7 @@ define([
         otherInteractHandlers = hdl = hdl2 = timer = null;
       };
 
-      var interactWatcher = view.watch("interacting,animation", function(newValue) {
+      var interactWatcher = view.watch("interacting,animation", function (newValue) {
         if (!newValue) {
           if (timer) {
             timer.remove();
@@ -362,21 +393,21 @@ define([
         if (hdl || timer) {
           return;
         }
-        timer = Scheduler.schedule(function() {
+        timer = Scheduler.schedule(function () {
           timer = null;
-          hdl = view.watch("camera", function(newValue) {
-            others.forEach(function(v) {
+          hdl = view.watch("camera", function (newValue) {
+            others.forEach(function (v) {
               v.camera = newValue;
             });
           });
-          otherInteractHandlers = others.map(function(v) {
-            return v.watch("stationary", function() {
+          otherInteractHandlers = others.map(function (v) {
+            return v.watch("stationary", function () {
               if (!newValue) {
                 clear();
               }
             });
           });
-          hdl2 = view.watch("stationary", function(newValue) {
+          hdl2 = view.watch("stationary", function (newValue) {
             if (newValue) {
               clear();
             }
@@ -384,23 +415,23 @@ define([
         });
       });
       return {
-        remove: function() {
-          this.remove = function() {};
+        remove: function () {
+          this.remove = function () {};
           clear();
           interactWatcher.remove();
         }
       };
     },
-    _bindViews: function(views) {
-      var hdls = views.map(lang.hitch(this, function(view, idx, views) {
+    _bindViews: function (views) {
+      var hdls = views.map(lang.hitch(this, function (view, idx, views) {
         var others = views.concat();
         others.splice(idx, 1);
         return this._bindView(view, others);
       }));
       return {
-        remove: function() {
-          this.remove = function() {};
-          hdls.forEach(function(h) {
+        remove: function () {
+          this.remove = function () {};
+          hdls.forEach(function (h) {
             h.remove();
           });
           hdls = null;

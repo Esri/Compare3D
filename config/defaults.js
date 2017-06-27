@@ -33,6 +33,7 @@ define({
   "link": true,
   "panelsOpen": true,
   "proxyurl": "",
+  "legend": true,
   "sharinghost": location.protocol + "//" + "www.arcgis.com",
   "units": null,
   "components": ["attribution", "zoom", "compass"],

@@ -1,15 +1,15 @@
 define([
-  'dojo/_base/declare',
-  'dojo/_base/lang',
+  "dojo/_base/declare",
+  "dojo/_base/lang",
 
-  'dojo/dom-attr',
-  'dojo/dom-style',
+  "dojo/dom-attr",
+  "dojo/dom-style",
 
-  'dijit/_WidgetBase',
-  'dijit/_TemplatedMixin',
+  "dijit/_WidgetBase",
+  "dijit/_TemplatedMixin",
 
-  'dojo/text!./templates/SlideItem.html'
-], function(
+  "dojo/text!./templates/SlideItem.html"
+], function (
   declare, lang,
   domAttr, domStyle,
   _WidgetBase, _TemplatedMixin,
@@ -25,7 +25,7 @@ define([
     options: {
       slide: null,
       index: null,
-      color: '#ff0000'
+      color: "#ff0000"
     },
 
     //--------------------------------------------------------------------------
@@ -34,14 +34,14 @@ define([
     //
     //--------------------------------------------------------------------------
 
-    constructor: function(options) {
+    constructor: function (options) {
       lang.mixin(this.options, options);
       this.slide = this.options.slide;
       this.index = this.options.index;
       this.color = this.options.color;
     },
 
-    postCreate: function() {
+    postCreate: function () {
       this.inherited(arguments);
       domAttr.set(this.thumbNode, "src", this.slide.thumbnail.url);
       domAttr.set(this.thumbNode, "title", this.slide.title.text);
@@ -51,13 +51,11 @@ define([
       domStyle.set(this.numNode, "backgroundColor", this.color);
     },
 
-    destroy: function() {
+    destroy: function () {
       this.scene = null;
       this.slide = null;
       this.inherited(arguments);
     }
-
-
   });
 
   return slideItem;

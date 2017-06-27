@@ -16,14 +16,14 @@
  */
 define({
   "scene": {
-    "error": "לא ניתן ליצור סצינה",
-    "support": "אין תמיכה בדפדפן",
-    "noScene": "ציין מזהי סצינה",
-    "noConfig": "Config לא מוגדר",
-    "invalidScene": "לא ניתן ליצור סצינה"
+    "error": "Nije moguće stvoriti scenu",
+    "support": "Preglednik nije podržan",
+    "noScene": "Navedite id scene",
+    "noConfig": "Konfiguracija nije definirana",
+    "invalidScene": "Nije moguće stvoriti scenu"
   },
   "tools": {
-    "linkLabel": "תצוגות מקושרות",
-    "unlinkLabel": "תצוגות לא מקושרות"
+    "linkLabel": "Poveži prikaze",
+    "unlinkLabel": "Odspoji prikaze"
   }
 });

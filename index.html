@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title></title>
   <meta charset="utf-8">
-  <!-- Define the versions of IE that will be used to render the page. See Microsoft documentation for details. Optional. -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- Responsive -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta name="mobile-web-app-capable" content="yes">
@@ -13,7 +12,7 @@
   <!-- End Responsive -->
   <!-- Use protocol relative urls that way if the browser is viewing the page via HTTPS the js/css file will be requested using the HTTPS protocol -->
   <!--<link rel="stylesheet" href="//js.arcgis.com/4.1/esri/css/calcite/common.css">-->
-  <link rel="stylesheet" href="//js.arcgis.com/4.1/esri/css/main.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/4.4/esri/css/main.css">
   <!-- Load any application specific styles -->
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="js/SlideList/css/SlideList.css">
@@ -34,24 +33,27 @@
       packages: [{
         name: "application",
         location: package_path + '/js'
-            }, {
+      }, {
         name: "config",
         location: package_path + '/config'
-            }, {
+      }, {
         name: "arcgis_templates",
         location: package_path + '/..'
       }]
     };
+    if (location.search.match(/locale=([\w-]+)/)) {
+      dojoConfig.locale = RegExp.$1;
+    }
   </script>
-  <script type="text/javascript" src="//js.arcgis.com/4.1/"></script>
+  <script type="text/javascript" src="https://js.arcgis.com/4.4/"></script>
   <script type="text/javascript">
     require([
-            "config/templateConfig",
-            "application/template",
-            "application/main",
-            "dijit/layout/BorderContainer",
-            "dijit/layout/ContentPane"
-        ], function (
+      "config/templateConfig",
+      "application/template",
+      "application/main",
+      "dijit/layout/BorderContainer",
+      "dijit/layout/ContentPane"
+    ], function (
       templateConfig,
       Template,
       Main
