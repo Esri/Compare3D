@@ -14,9 +14,9 @@
         {
             "category": "Theme",
             "fields": [{
-            "type": "subcategory",
-            "label": "Colors"
-        },{
+                    "type": "subcategory",
+                    "label": "Colors"
+                }, {
                     "type": "color",
                     "fieldName": "backgroundColor",
                     "tooltip": "Background color",
@@ -55,6 +55,10 @@
                     "type": "boolean",
                     "fieldName": "legend",
                     "label": "Show legend"
+                }, {
+                    "type": "boolean",
+                    "fieldName": "home",
+                    "label": "Add home button"
                 }
             ]
         }
@@ -64,6 +68,7 @@
         "panelsOpen": true,
         "color": "#fff",
         "legend": false,
+        "home": false,
         "backgroundColor": "#333",
         "slideColorTheme": "#05668D"
     }

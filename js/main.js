@@ -181,23 +181,60 @@ define([
         domClass.remove(document.body, "app-loading");
         if (results && results.length && results.length > 0) {
           this.views = results;
-          // Add legend if enabled 
-          if (this.config.legend) {
+          if (this.config.home || this.config.legend) {
+            this._addHome();
             this._addLegend();
           }
           if (this.config.link) {
+            console.log("Link");
             this._linkViews();
           }
         }
       }));
 
     },
-    _addLegend: function () {
-      this.views.forEach(function (view) {
-        require(["esri/widgets/Legend", "esri/widgets/Expand"], function (Legend, Expand) {
-          if (!Legend || !Expand) {
-            return;
+    _addHome: function () {
+      if (!this.config.home) {
+        return;
+      }
+      require(["esri/widgets/Home"], function (Home) {
+        if (!Home) {
+          return;
+        }
+        this.views.forEach(function (view) {
+          var home = new Home({
+            view: view
+          });
+          view.home = home;
+          view.ui.add({
+            component: view.home,
+            position: "top-left",
+            index: 0
+          });
+          query("esri-home esri-widget-button").forEach(lang.hitch(this, function (node) {
+            domStyle.set(node, {
+              backgroundColor: this.config.backgroundColor,
+              color: this.config.textColor
+            });
+          }));
+        });
+        if (this.config.link) {
+          if (!this.linkHandler) {
+            this._linkViews();
           }
+          this._updateViewComponents(false);
+        }
+      }.bind(this));
+    },
+    _addLegend: function () {
+      if (!this.config.legend) {
+        return;
+      }
+      require(["esri/widgets/Legend", "esri/widgets/Expand"], function (Legend, Expand) {
+        if (!Legend || !Expand) {
+          return;
+        }
+        this.views.forEach(function (view) {
           // add legend widget to ui
           var legend = new Legend({
             view: view
@@ -209,8 +246,15 @@ define([
           });
 
           view.ui.add(legendExpand, "top-right");
-        }.bind(this));
-      });
+        });
+
+        if (this.config.link) {
+          if (!this.linkHandler) {
+            this._linkViews();
+          }
+          this._updateViewComponents(false);
+        }
+      }.bind(this));
     },
     _linkViews: function () {
       // Sync/Unsync the view extents
@@ -246,10 +290,21 @@ define([
             updateHandle.remove();
           }
         }));
+
         if (update) {
           view.ui.components = this.config.components;
+          if (view.home) {
+            view.ui.add({
+              component: view.home,
+              position: "top-left",
+              index: 0
+            });
+          }
         } else {
           view.ui.components = ["attribution"];
+          if (view.home) {
+            view.ui.remove(view.home);
+          }
         }
       }
     },
@@ -346,6 +401,7 @@ define([
       query(".esri-compass-icon").forEach(lang.hitch(this, function (node) {
         domStyle.set(node, "fill", this.config.textColor);
       }));
+
       query(".esri-zoom .esri-button").forEach(lang.hitch(this, function (node) {
         domStyle.set(node, {
           backgroundColor: this.config.backgroundColor,

@@ -36,6 +36,7 @@ define({
   "legend": true,
   "sharinghost": location.protocol + "//" + "www.arcgis.com",
   "units": null,
+  "home": false,
   "components": ["attribution", "zoom", "compass"],
   "helperServices": {
     "geometry": {
